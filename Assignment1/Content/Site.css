@@ -1,0 +1,54 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.jumbotron {
+    background-color: aquamarine; /* For browsers that do not support gradients */
+    background: linear-gradient(to bottom, #009999 69%, #99ff99 100%); /* Standard syntax (must be last) */
+}
+
+.jumbotron p {
+    color: #003366;
+    line-height: 1.4;
+}
+
+.jumbotron h1 {
+    color: #003366;
+    line-height: 1;
+}
+
+.navbar {
+    background-color: #009999;
+    border: none;
+}
+
+.navbar-nav li {
+    color: red;
+}
+
+li.nav {
+    color: #006699;
+}
+
+h2 {
+    color: #006666;
+}
+
+p {
+    color: #00b3b3;
+}

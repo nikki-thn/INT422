@@ -1,0 +1,14 @@
+=====
+System.Web.Optimization reference not found. Cant build solution -> Ran
+  uninstall-Package Microsoft.AspNet.Web.Optimization 
+  install-Package Microsoft.AspNet.Web.Optimization (reinstall)
+
+install-Package Microsoft.AspNet.Web.Optimization
+=====
+Error:
+Could not load file or assembly 'Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The system cannot find the file specified.
+Fix:
+For any package cannot be found => Uninstall and reinstall.
+If package cannot be removed due to dependency, remove dependency then the package and reinstall both
+(un)install-Package Microsoft.Web.Infrastructure
+install-Package Microsoft.Web.Infrastructure

@@ -6,57 +6,56 @@ using System.Web.Mvc;
 
 namespace Web_app_project_template_v11.Controllers
 {
-    public class InvoicesController : Controller
-    {   
-        //reference to the manager class
+    public class TracksController : Controller
+    {
+        //Reference to a manager object
         private Manager m = new Manager();
 
-        // GET: Invoices
+        // GET: All Tracks
         public ActionResult Index()
         {
-            var i = m.InvoiceGetAll();
+            var t = m.TrackGetAll();
 
-            return View(i);
+            return View(t);
         }
 
-        // GET: Invoices/Details/5
-        public ActionResult Details(int? id)
+        // GET: All Tracks
+        public ActionResult PopTracksIndex()
         {
-            var i = m.InvoiceGetById(id.GetValueOrDefault());
+            var t = m.TrackGetAllPop();
 
-            if (i == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(i);
-            }
-
+            return View(t);
         }
 
-        public ActionResult InvoiceDetails(int? id)
+        // GET: All Tracks
+        public ActionResult DeepPurpleTracksIndex()
         {
-            var i = m.InvoiceGetByIdWithDetails(id.GetValueOrDefault());
+            var t = m.TrackGetAllDeepPurple();
 
-            if (i == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(i);
-            }
-
+            return View(t);
         }
 
-        // GET: Invoices/Create
+        // GET: All Tracks
+        public ActionResult Top100LongestTracksIndex()
+        {
+            var t = m.TrackGetAllTop100Longest();
+
+            return View(t);
+        }
+
+        // GET: Tracks/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Tracks/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Invoices/Create
+        // POST: Tracks/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -72,13 +71,13 @@ namespace Web_app_project_template_v11.Controllers
             }
         }
 
-        // GET: Invoices/Edit/5
+        // GET: Tracks/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Invoices/Edit/5
+        // POST: Tracks/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -94,13 +93,13 @@ namespace Web_app_project_template_v11.Controllers
             }
         }
 
-        // GET: Invoices/Delete/5
+        // GET: Tracks/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Invoices/Delete/5
+        // POST: Tracks/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

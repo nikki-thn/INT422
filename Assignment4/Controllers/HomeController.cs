@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace INT422_Assignment4.Controllers
+namespace Web_app_project_template_v11.Controllers
 {
     public class HomeController : Controller
     {

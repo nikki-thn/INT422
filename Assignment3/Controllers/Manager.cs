@@ -30,6 +30,7 @@ namespace Web_app_project_template_v11.Controllers
                 //Add a mapping from Customer to CustomerBase
                 cfg.CreateMap<Models.Customer, Controllers.CustomerBase>();
                 cfg.CreateMap<Models.Employee, Controllers.EmployeeBase>();
+                cfg.CreateMap<Models.Track, Controllers.TrackBase>();
 
                 //Add a mapping from CustomerAdd to Customer
                 //Handles incoming data from the browser user
@@ -192,6 +193,30 @@ namespace Web_app_project_template_v11.Controllers
                 ds.SaveChanges();
                 return true;
             }
+        }
+
+        //Get all Tracks
+        public IEnumerable<TrackBase> TrackGetAll()
+        {
+            return mapper.Map<IEnumerable<Track>, IEnumerable<TrackBase>>(ds.Tracks);
+        }
+
+        //GenreId is 9, sorted ascending by track Name
+        public IEnumerable<TrackBase> TrackGetAllPop()
+        {
+            return mapper.Map<IEnumerable<Track>, IEnumerable<TrackBase>>(ds.Tracks.Where(t => t.GenreId == 19));
+        }
+
+        //Composer contains “Jon Lord”, sorted ascending by TrackId
+        public IEnumerable<TrackBase> TrackGetAllDeepPurple()
+        {
+            return mapper.Map<IEnumerable<Track>, IEnumerable<TrackBase>>(ds.Tracks.Where(t => t.Composer.Contains("Jon Lord")).OrderBy(t => t.TrackId));
+        }
+
+        //Sorted descending by Milliseconds; use the Take() method to limit the results to 100 items only
+        public IEnumerable<TrackBase> TrackGetAllTop100Longest()
+        {
+            return mapper.Map<IEnumerable<Track>, IEnumerable<TrackBase>>(ds.Tracks.OrderByDescending(t => t.Milliseconds).Take(100));
         }
 
     }

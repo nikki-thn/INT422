@@ -91,6 +91,8 @@ namespace Web_app_project_template_v11.Controllers
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
+        public string NumOfWeeksVacation { get; set; }
     }
 
     public class EmployeeEditContactInfo
@@ -106,5 +108,7 @@ namespace Web_app_project_template_v11.Controllers
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
+        public string NumOfWeeksVacation { get; set; }
     }
 }

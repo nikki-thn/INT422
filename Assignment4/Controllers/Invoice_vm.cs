@@ -51,12 +51,29 @@ namespace Web_app_project_template_v11.Controllers
         public string CustomerEmployeeLastName { get; set; }
     }
 
-    public class InvoiceLineBase
+    public class InvoiceLineBase : InvoiceBase
     {
         public int InvoiceLineId { get; set; }
-        public int InvoiceId { get; set; }
+        //public int InvoiceId { get; set; }
         public int TrackId { get; set; }
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
+        public TrackBase Track { get; set; }
+    }
+
+    public class InvoiceLineWithDetails : InvoiceLineBase
+    {
+        public InvoiceLineWithDetails()
+        {
+            InvoiceLines = new List<InvoiceLineBase>();
+        }
+        public ICollection<InvoiceLineBase> InvoiceLines { get; set; }
+        public CustomerBase Customer { get; set; }
+        public string CustomerFirstName { get; set; }
+        public string CustomerLastName { get; set; }
+        public string CustomerCity { get; set; }
+        public string CustomerState { get; set; }
+        public string CustomerEmployeeFirstName { get; set; }
+        public string CustomerEmployeeLastName { get; set; }
     }
 }

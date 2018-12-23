@@ -32,6 +32,9 @@ namespace Web_app_project_template_v11.Controllers
                 cfg.CreateMap<Models.Employee, Controllers.EmployeeBase>();
                 cfg.CreateMap<Models.Track, Controllers.TrackBase>();
                 cfg.CreateMap<Models.Invoice, Controllers.InvoiceBase>();
+                cfg.CreateMap<Models.Album, Controllers.AlbumBase>();
+                cfg.CreateMap<Models.Artist, Controllers.ArtistBase>();
+                cfg.CreateMap<Models.MediaType, Controllers.MediaTypeBase>();
 
                 //Add a mapping from CustomerAdd to Customer
                 //Handles incoming data from the browser user
@@ -44,7 +47,9 @@ namespace Web_app_project_template_v11.Controllers
 
                 //mapping for dataclass and associate entity
                 cfg.CreateMap<Models.Invoice, Controllers.InvoiceWithDetails>();
+                cfg.CreateMap<Models.Invoice, Controllers.InvoiceLineWithDetails>();
                 cfg.CreateMap<Models.InvoiceLine, Controllers.InvoiceLineBase>();
+                cfg.CreateMap<Models.InvoiceLine, Controllers.InvoiceLineWithDetails>();
             });
 
             mapper = config.CreateMapper();
@@ -240,13 +245,13 @@ namespace Web_app_project_template_v11.Controllers
             return (i  == null) ? null : mapper.Map<Invoice, InvoiceBase>(i);
         }
 
-        public InvoiceWithDetails InvoiceGetByIdWithDetails(int id)
+        public InvoiceLineWithDetails InvoiceGetByIdWithDetails(int id)
         {
             //Attempt to fetch the object
-            var o = ds.Invoices.Include("InvoiceLines.Track").Include("Customer.Employee").SingleOrDefault(i => i.InvoiceId == id);
+            var o = ds.Invoices.Include("InvoiceLines.Track.MediaType").Include("InvoiceLines.Track.Album.Artist").Include("Customer.Employee").SingleOrDefault(i => i.InvoiceId == id);
 
             //Return the result, or null if not found
-            return (o == null) ? null : mapper.Map<Invoice, InvoiceWithDetails>(o);
+            return (o == null) ? null : mapper.Map<Invoice, InvoiceLineWithDetails>(o);
         }
 
     }

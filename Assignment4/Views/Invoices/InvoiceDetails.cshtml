@@ -1,4 +1,4 @@
-﻿@model Web_app_project_template_v11.Controllers.InvoiceWithDetails
+﻿@model Web_app_project_template_v11.Controllers.InvoiceLineWithDetails
 
 @{
     ViewBag.Title = "Invoice details";
@@ -11,7 +11,7 @@
     var customerCity = Model.BillingCity + ",";
     var customerState = Model.BillingState + ",";
     var customerCountry = Model.BillingCountry + ",";
-    var customerPostalCode =  Model.BillingPostalCode;
+    var customerPostalCode = Model.BillingPostalCode;
 }
 
 <h2>InvoiceDetails</h2>
@@ -99,10 +99,19 @@
                 @Html.DisplayName("Track ID")
             </th>
             <th>
+                @Html.DisplayName("Track Info")
+            </th>
+            <th>
+                @Html.DisplayName("Album, Composer(s)")
+            </th>
+            <th>
                 @Html.DisplayName("Unit Price")
             </th>
             <th>
                 @Html.DisplayName("Quantity")
+            </th>
+            <th>
+                @Html.DisplayName("Item Total")
             </th>
         </tr>
 
@@ -116,11 +125,24 @@
                 @invoice.TrackId
             </td>
             <td>
+                @invoice.Track.Name <br />
+                by @invoice.Track.Album.Artist.Name <br />
+            </td>
+            <td>
+                Album: @invoice.Track.Album.Title <br />
+                Composer(s): @invoice.Track.Composer <br/>
+                Format: @invoice.Track.MediaType.Name
+            </td>
+            <td>
                 @invoice.UnitPrice
-                
+
             </td>
             <td>
                 @invoice.Quantity
+            </td>
+            <td>
+                @{ var totalPrice = invoice.UnitPrice * invoice.Quantity; }
+                @totalPrice
             </td>
         </tr>
         }

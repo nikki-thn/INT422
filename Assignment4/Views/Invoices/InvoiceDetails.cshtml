@@ -1,13 +1,17 @@
-﻿@model Web_app_project_template_v11.Controllers.InvoiceWithDetails
+@model Web_app_project_template_v11.Controllers.InvoiceWithDetails
 
 @{
     ViewBag.Title = "Invoice details";
 
     // Prepare some strings, to be used below
     var invoiceDate = Model.InvoiceDate.ToLongDateString();
-
-    var customerName = Model.CustomerFirstName + Model.CustomerLastName;
-    var EmployeeName = Model.CustomerEmployeeFirstName + Model.CustomerEmployeeLastName;
+    var customerName = Model.CustomerFirstName + " " + Model.CustomerLastName;
+    var EmployeeName = Model.CustomerEmployeeFirstName + " " + Model.CustomerEmployeeLastName;
+    var customerAddress = Model.BillingAddress;
+    var customerCity = Model.BillingCity + ",";
+    var customerState = Model.BillingState + ",";
+    var customerCountry = Model.BillingCountry + ",";
+    var customerPostalCode =  Model.BillingPostalCode;
 }
 
 <h2>InvoiceDetails</h2>
@@ -64,43 +68,23 @@
         </dd>
 
         <dt>
+            @Html.DisplayName("Sales Representative")
+        </dt>
+
+        <dd>
+            @EmployeeName
+        </dd>
+
+        <dt>
             @Html.DisplayName("Billing address")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BillingAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Billing city")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingCity)
-        </dd>
-
-        <dt>
-            @Html.Display("Billing State")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingState)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Billing country")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingCountry)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Postal code")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingPostalCode)
+            @customerAddress <br/>
+            @customerCity
+            @customerState 
+            @customerCountry <br />
+            @customerPostalCode <br />
         </dd>
 
     </dl>

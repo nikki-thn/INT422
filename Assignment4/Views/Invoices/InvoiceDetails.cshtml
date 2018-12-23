@@ -1,4 +1,4 @@
-@model Web_app_project_template_v11.Controllers.InvoiceWithDetails
+﻿@model Web_app_project_template_v11.Controllers.InvoiceWithDetails
 
 @{
     ViewBag.Title = "Invoice details";
@@ -47,7 +47,7 @@
 
     </dl>
 
-    <hr/>
+    <hr />
 
     <dl class="dl-horizontal">
 
@@ -80,14 +80,52 @@
         </dt>
 
         <dd>
-            @customerAddress <br/>
+            @customerAddress <br />
             @customerCity
-            @customerState 
+            @customerState
             @customerCountry <br />
             @customerPostalCode <br />
         </dd>
-
     </dl>
+
+    <p>Line item Details</p>
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayName("Invoice Line ID")
+            </th>
+            <th>
+                @Html.DisplayName("Track ID")
+            </th>
+            <th>
+                @Html.DisplayName("Unit Price")
+            </th>
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+        </tr>
+
+        @foreach (var invoice in Model.InvoiceLines)
+        {
+        <tr>
+            <td>
+                @invoice.InvoiceLineId
+            </td>
+            <td>
+                @invoice.TrackId
+            </td>
+            <td>
+                @invoice.UnitPrice
+                
+            </td>
+            <td>
+                @invoice.Quantity
+            </td>
+        </tr>
+        }
+    </table>
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |

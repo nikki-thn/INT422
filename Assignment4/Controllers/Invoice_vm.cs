@@ -36,17 +36,27 @@ namespace Web_app_project_template_v11.Controllers
 
     public class InvoiceWithDetails : InvoiceBase
     {
-        //public InvoiceWithDetails()
-        //{
-        //    Customer = new Customer();
-        //}
+        public InvoiceWithDetails()
+        {
+            InvoiceLines = new List<InvoiceLineBase>();
+        }
 
         public CustomerBase Customer { get; set; }
+        public ICollection<InvoiceLineBase> InvoiceLines { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
         public string CustomerCity { get; set; }
         public string CustomerState { get; set; }
         public string CustomerEmployeeFirstName { get; set; }
         public string CustomerEmployeeLastName { get; set; }
+    }
+
+    public class InvoiceLineBase
+    {
+        public int InvoiceLineId { get; set; }
+        public int InvoiceId { get; set; }
+        public int TrackId { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int Quantity { get; set; }
     }
 }

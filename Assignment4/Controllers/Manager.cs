@@ -44,6 +44,7 @@ namespace Web_app_project_template_v11.Controllers
 
                 //mapping for dataclass and associate entity
                 cfg.CreateMap<Models.Invoice, Controllers.InvoiceWithDetails>();
+                cfg.CreateMap<Models.InvoiceLine, Controllers.InvoiceLineBase>();
             });
 
             mapper = config.CreateMapper();
@@ -242,7 +243,7 @@ namespace Web_app_project_template_v11.Controllers
         public InvoiceWithDetails InvoiceGetByIdWithDetails(int id)
         {
             //Attempt to fetch the object
-            var o = ds.Invoices.Include("Customer.Employee").SingleOrDefault(i => i.InvoiceId == id);
+            var o = ds.Invoices.Include("InvoiceLines.Track").Include("Customer.Employee").SingleOrDefault(i => i.InvoiceId == id);
 
             //Return the result, or null if not found
             return (o == null) ? null : mapper.Map<Invoice, InvoiceWithDetails>(o);

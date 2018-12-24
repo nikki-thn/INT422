@@ -245,11 +245,24 @@ namespace Web_app_project_template_v11.Controllers
         public TrackBase TrackAdd(TrackAdd newItem)
         {
             //Attempt to add new Track
+            var a = ds.Albums.Find(newItem.Album);
+            var m = ds.MediaTypes.Find(newItem.MediaTypeId);
             var addedTrack = ds.Tracks.Add(mapper.Map<TrackAdd, Track>(newItem));
-            ds.SaveChanges();
 
-            //If successful, return the added item, mapped to a view model object
-            return (addedTrack == null) ? null : mapper.Map<Track, TrackBase>(addedTrack);
+            if (a == null || m == null)
+            {
+                return null;
+            }
+            else
+            { 
+                addedTrack.Album = a;
+                addedTrack.MediaType = m;
+
+                ds.SaveChanges();
+
+                //If successful, return the added item, mapped to a view model object
+                return (addedTrack == null) ? null : mapper.Map<Track, TrackBase>(addedTrack);
+            }
         }
 
         //Get all Invoices

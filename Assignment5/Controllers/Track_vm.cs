@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Web_app_project_template_v11.Controllers
 {
@@ -24,11 +25,12 @@ namespace Web_app_project_template_v11.Controllers
     public class TrackAdd
     {
         public string Name { get; set; }
-        public int? AlbumId { get; set; }
-        public int MediaTypeId { get; set; }
         public string Composer { get; set; }
         public int Milliseconds { get; set; }
         public decimal UnitPrice { get; set; }
+        public string AlbumId { get; set; }
+        public string Album { get; set; }
+        public int MediaTypeId { get; set; }
     }
 
     public class TrackAddForm
@@ -37,7 +39,9 @@ namespace Web_app_project_template_v11.Controllers
         public string Composer { get; set; }
         public int Milliseconds { get; set; }
         public decimal UnitPrice { get; set; }
-    }
 
+        public SelectList AlbumList { get; set; }
+        public SelectList MediaTypeList { get; set; }
+    }
 
 }

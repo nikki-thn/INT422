@@ -62,7 +62,12 @@ namespace Web_app_project_template_v11.Controllers
         // GET: Tracks/Create
         public ActionResult Create()
         {
-            return View();
+            var form = new TrackAddForm();
+
+            form.AlbumList = new SelectList(m.AlbumGetAll(), "Title", "Title");
+            form.MediaTypeList = new SelectList(m.MediaTypeGetAll(), "MediaTypeId", "Name");
+
+            return View(form);
         }
 
         // POST: Tracks/Create

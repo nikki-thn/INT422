@@ -7,12 +7,10 @@ using System.Web.Mvc;
 
 namespace Web_app_project_template_v11.Controllers
 {
-    public class TrackBase : TrackAdd 
+    public class TrackBase : TrackAdd
     {
         [Key]
         public int TrackId { get; set; }
-        public string GenreId { get; set; }
-        public int? Bytes { get; set; }
     }
 
     public class TrackWithDetails : TrackBase
@@ -24,16 +22,20 @@ namespace Web_app_project_template_v11.Controllers
 
     public class TrackAdd
     {
-        public string Name { get; set; }
         public string Composer { get; set; }
         public int Milliseconds { get; set; }
+        public string Name { get; set; }
         public decimal UnitPrice { get; set; }
-        public string AlbumId { get; set; }
-        public string Album { get; set; }
+        public string GenreId { get; set; }
+        public int? Bytes { get; set; }
+
+        [Range(1, Int32.MaxValue)]
+        public int AlbumId { get; set; }
+        [Range(1, Int32.MaxValue)]
         public int MediaTypeId { get; set; }
     }
 
-    public class TrackAddForm
+    public class TrackAddForm 
     {
         public string Name { get; set; }
         public string Composer { get; set; }

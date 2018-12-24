@@ -11,6 +11,5 @@ namespace Web_app_project_template_v11.Controllers
         [Key]
         public int AlbumId { get; set; }
         public string Title { get; set; }
-        public int ArtistId { get; set; }
     }
 }

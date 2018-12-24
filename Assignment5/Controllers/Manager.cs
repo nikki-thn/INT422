@@ -40,6 +40,7 @@ namespace Web_app_project_template_v11.Controllers
                 //Handles incoming data from the browser user
                 cfg.CreateMap<Controllers.CustomerAdd, Models.Customer>();
                 cfg.CreateMap<Controllers.EmployeeAdd, Models.Employee>();
+                cfg.CreateMap<Controllers.TrackAdd, Models.Track>();
 
                 //Mapping for base class and editting class
                 cfg.CreateMap<Controllers.CustomerBase, Controllers.CustomerEditContactInfoForm>();
@@ -245,18 +246,18 @@ namespace Web_app_project_template_v11.Controllers
         public TrackBase TrackAdd(TrackAdd newItem)
         {
             //Attempt to add new Track
-            var a = ds.Albums.Find(newItem.Album);
-            var m = ds.MediaTypes.Find(newItem.MediaTypeId);
+            var album = ds.Albums.Find(newItem.AlbumId);
+            var mediaType = ds.MediaTypes.Find(newItem.MediaTypeId);
             var addedTrack = ds.Tracks.Add(mapper.Map<TrackAdd, Track>(newItem));
 
-            if (a == null || m == null)
+            if (album == null || mediaType == null)
             {
                 return null;
             }
             else
             { 
-                addedTrack.Album = a;
-                addedTrack.MediaType = m;
+                addedTrack.Album = album;
+                addedTrack.MediaType = mediaType;
 
                 ds.SaveChanges();
 

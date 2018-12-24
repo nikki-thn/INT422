@@ -63,8 +63,8 @@ namespace Web_app_project_template_v11.Controllers
         public ActionResult Create()
         {
             var form = new TrackAddForm();
-
-            form.AlbumList = new SelectList(m.AlbumGetAll(), "Title", "Title");
+            //ViewData.Model = form;
+            form.AlbumList = new SelectList(m.AlbumGetAll(), "AlbumId", "Title");
             form.MediaTypeList = new SelectList(m.MediaTypeGetAll(), "MediaTypeId", "Name");
 
             return View(form);
@@ -89,7 +89,7 @@ namespace Web_app_project_template_v11.Controllers
             }
             else
             {
-                return RedirectToAction("details", new { id = addedTrack.TrackId });
+                return RedirectToAction("TrackWithDetails", new { id = addedTrack.TrackId });
             }
         }
 

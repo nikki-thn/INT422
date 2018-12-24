@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Web_app_project_template_v11.Controllers.TrackBase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Track list (@ViewContext.RouteData.GetRequiredString("action"))</h2>
+
+<p>
+    @Html.ActionLink("All Tracks", "Index") | @Html.ActionLink("Pop Tracks", "PopTracksIndex") |
+    @Html.ActionLink("Jon Lord (Deep Purple) track", "DeepPurpleTracksIndex") |
+    @Html.ActionLink("Longest tracks", "Top100LongestTracksIndex") |  @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlbumId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MediaTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Composer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Milliseconds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bytes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrackId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlbumId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MediaTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Composer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Milliseconds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bytes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TrackId })  |
+                @Html.ActionLink("Details", "TrackWithDetails", new { id = item.TrackId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TrackId })
+            </td>
+        </tr>
+    }
+
+</table>

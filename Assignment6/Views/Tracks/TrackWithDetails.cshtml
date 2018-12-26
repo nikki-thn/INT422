@@ -1,0 +1,74 @@
+﻿@model Web_app_project_template_v11.Controllers.TrackWithDetails
+
+@{
+    ViewBag.Title = "Track Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TrackBase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Track Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Composer")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Composer)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Length (ms)")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Milliseconds)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Unit price")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Album title")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Artist Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumArtistName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Media Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaType.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TrackId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

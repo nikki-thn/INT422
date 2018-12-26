@@ -1,0 +1,42 @@
+﻿@model Web_app_project_template_v11.Controllers.PlaylistWithTracksDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlaylistWithTracksDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tracks now on the playlist")
+            <span class="badge">
+                @Html.DisplayFor(model => model.TracksCount)
+            </span>
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Tracks)
+            {
+                @item.Name<br />
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlaylistId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

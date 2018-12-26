@@ -1,0 +1,155 @@
+﻿@model Web_app_project_template_v11.Controllers.InvoiceLineWithDetails
+
+@{
+    ViewBag.Title = "Invoice details";
+
+    // Prepare some strings, to be used below
+    var invoiceDate = Model.InvoiceDate.ToLongDateString();
+    var customerName = Model.CustomerFirstName + " " + Model.CustomerLastName;
+    var EmployeeName = Model.CustomerEmployeeFirstName + " " + Model.CustomerEmployeeLastName;
+    var customerAddress = Model.BillingAddress;
+    var customerCity = Model.BillingCity + ",";
+    var customerState = Model.BillingState + ",";
+    var customerCountry = Model.BillingCountry + ",";
+    var customerPostalCode = Model.BillingPostalCode;
+}
+
+<h2>InvoiceDetails</h2>
+
+<div>
+    <h4>InvoiceWithDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Invoice number")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Invoice date")
+        </dt>
+
+        <dd>
+            @invoiceDate
+            @*@Html.DisplayFor(model => model.InvoiceDate)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Invoice total")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+    </dl>
+
+    <hr />
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Customer ID")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Customer name")
+        </dt>
+
+        <dd>
+            @customerName
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sales Representative")
+        </dt>
+
+        <dd>
+            @EmployeeName
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Billing address")
+        </dt>
+
+        <dd>
+            @customerAddress <br />
+            @customerCity
+            @customerState
+            @customerCountry <br />
+            @customerPostalCode <br />
+        </dd>
+    </dl>
+
+    <p>Line item Details</p>
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayName("Invoice Line ID")
+            </th>
+            <th>
+                @Html.DisplayName("Track ID")
+            </th>
+            <th>
+                @Html.DisplayName("Track Info")
+            </th>
+            <th>
+                @Html.DisplayName("Album, Composer(s)")
+            </th>
+            <th>
+                @Html.DisplayName("Unit Price")
+            </th>
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+            <th>
+                @Html.DisplayName("Item Total")
+            </th>
+        </tr>
+
+        @foreach (var invoice in Model.InvoiceLines)
+        {
+        <tr>
+            <td>
+                @invoice.InvoiceLineId
+            </td>
+            <td>
+                @invoice.TrackId
+            </td>
+            <td>
+                @invoice.TrackName <br />
+                by @invoice.TrackAlbumArtistName <br />
+            </td>
+            <td>
+                Album: @invoice.TrackAlbumTitle <br />
+                Composer(s): @invoice.TrackComposer <br/>
+                Format: @invoice.TrackMediaTypeName
+            </td>
+            <td>
+                @invoice.UnitPrice
+
+            </td>
+            <td>
+                @invoice.Quantity
+            </td>
+            <td>
+                @{ var totalPrice = invoice.UnitPrice * invoice.Quantity; }
+                @totalPrice
+            </td>
+        </tr>
+        }
+    </table>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

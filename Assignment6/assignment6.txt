@@ -1,1 +1,5 @@
+Issues/Error
 
+Unable to add new tracks to playlist -> PlaylistEditTrackDetails wasn't defined with enough properties. Inheritance cannnot be used in such case when edit is in used. 
+
+Name="property" should be the same as define in the class. For example, TrackIds in Edit class should be same in View's Input field

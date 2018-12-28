@@ -55,6 +55,7 @@ namespace Web_app_project_template_v11.Controllers
                 cfg.CreateMap<Models.InvoiceLine, Controllers.InvoiceLineWithDetails>();
                 cfg.CreateMap<Models.Track, Controllers.TrackWithDetails>();
                 cfg.CreateMap<Models.Playlist, Controllers.PlaylistWithTracksDetails>();
+                cfg.CreateMap<Models.Playlist, Controllers.PlaylistEditTrackDetails>();
 
             });
 
@@ -380,7 +381,7 @@ namespace Web_app_project_template_v11.Controllers
 
                 // Then, go through the incoming items
                 // For each one, add to the fetched object's collection
-                foreach (var item in newItem.Tracks)
+                foreach (var item in newItem.TrackIds)
                 {
                     var a = ds.Tracks.Find(item);
                     o.Tracks.Add(a);

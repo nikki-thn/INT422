@@ -40,7 +40,7 @@ namespace Web_app_project_template_v11.Controllers
 
             if (o == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace Web_app_project_template_v11.Controllers
                 // For the multi select list, configure the "selected" items
                 // Notice the use of the Select() method, 
                 // which allows us to select/return/use only some properties from the source
-                var selectedValues = o.Tracks.Select(jd => jd.TrackId);
+                var selectedValues = o.Tracks.Select(t => t.TrackId);
 
                 // For clarity, use the named parameter feature of C#
                 form.TrackList = new MultiSelectList
@@ -59,7 +59,7 @@ namespace Web_app_project_template_v11.Controllers
                     dataTextField: "Name",
                     selectedValues: selectedValues);
 
-                form.TracksOnPlaylist = o.Tracks.OrderBy(t => t.Name);
+                form.TracksOnPlaylist = o.Tracks.OrderBy(t => t.TrackId);
 
                 return View(form);
             }

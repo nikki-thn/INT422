@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -28,24 +29,34 @@ namespace Web_app_project_template_v11.Controllers
             Tracks = new List<TrackBase>();
         }
 
-        public IEnumerable<TrackBase> Tracks { get; set; }
+        public ICollection<TrackBase> Tracks { get; set; }
     }
 
-    public class PlaylistEditTrackDetails : PlaylistBase
+    public class PlaylistEditTrackDetails
     {
         public PlaylistEditTrackDetails()
         {
-            Tracks = new List<int>();
+            TrackIds = new List<int>();
         }
-        
-        public IEnumerable<int> Tracks { get; set; }
+
+        [Key]
+        [DisplayName("Playlist Id")]
+        public int PlaylistId { get; set; }
+
+        public IEnumerable<int> TrackIds { get; set; }
     }
 
-    public class PlaylistEditTracksForm : PlaylistBase
+    public class PlaylistEditTracksForm
     {
-        [Display(Name = "Tracks in Playlist")]
+        [Key]
+        [DisplayName("Playlist Id")]
+        public int PlaylistId { get; set; }
+
+        [DisplayName("Playlist Name")]
+        [Required, StringLength(120)]
+        public string Name { get; set; }
+        public int TracksCount { get; set; }
         public MultiSelectList TrackList { get; set; }
         public IEnumerable<TrackBase> TracksOnPlaylist { get; set; }
-
     }
 }

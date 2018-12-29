@@ -12,3 +12,5 @@ For any package cannot be found => Uninstall and reinstall.
 If package cannot be removed due to dependency, remove dependency then the package and reinstall both
 (un)install-Package Microsoft.Web.Infrastructure
 install-Package Microsoft.Web.Infrastructure
+
+Missing Packages Compilers 332075 -> Find the .csproj change the path to where the Packages folder is located

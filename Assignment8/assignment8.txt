@@ -1,1 +1,5 @@
-Create a new project in local C drive instead of Shared drive on Virtual machine. This could cause the packages are not installed correctlu
+Create a new project in local C drive instead of Shared drive on Virtual machine. This could cause the packages are not installed correctly
+
+Keep having error missing packages -> cant find packages folder because the file path was incorrect. Change path in .csproj file or choose Create Directory for this project and this will put the package folder in the default path
+
+No database -> has to create a new database in App_data -> implement migration -> In IdentityModel.cs add codes so ds can identify the added tables (entities)
